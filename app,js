@@ -1,0 +1,16 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const loadEnv = require('./config/loadEnv');
+
+const protectedRoutes = require('./routes/protected');
+
+loadEnv();
+
+const app = express();
+app.use(bodyParser.json());
+
+// Routes
+app.use('/Auth ', authRoutes);
+app.use('/api', protectedRoutes);
+
+module.exports = app;
